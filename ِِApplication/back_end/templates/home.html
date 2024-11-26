@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CT Image Analysis</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="nav-logo">CT Analyzer</a>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="/" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
+                <li class="nav-item"><a href="#features" class="nav-link">Features</a></li>
+                <li class="nav-item"><a href="#upload" class="nav-link">Upload</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Hero Section with Images and Description -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>CT Image Analysis Powered by AI</h1>
+            <a href="#upload" class="btn-primary">Analyze Now</a>
+        </div>
+        <!-- <div class="hero-images">
+            <img src="{{ url_for('static', filename='a.png') }}" alt="CT scan example 1" class="hero-image">
+            <img src="{{ url_for('static', filename='b.png') }}" alt="CT scan example 2" class="hero-image">
+        </div> -->
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features-section">
+        <h2>Why Choose Our AI?</h2>
+        <div class="features-container">
+            <div class="feature-item">
+                <img src="{{ url_for('static', filename='feature1.png') }}" alt="Feature 1">
+                <h3>High Accuracy</h3>
+                <p>Our AI model achieves over 95% accuracy in detecting diseases in CT scans.</p>
+            </div>
+            <div class="feature-item">
+                <img src="{{ url_for('static', filename='feature2.png') }}" alt="Feature 2">
+                <h3>Fast Results</h3>
+                <p>Get your CT scan results in seconds, saving critical time for patient care.</p>
+            </div>
+            <div class="feature-item">
+                <img src="{{ url_for('static', filename='easy-to-use.png') }}" alt="Easy to Use" class="feature-icon">
+                <h3>Easy to Use</h3>
+                <p>With a simple and intuitive interface, anyone can upload a CT scan and receive quick results without any technical expertise.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Container for Uploading CT Image -->
+    <div id="upload" class="container">
+        <h2>Analyze Your CT Image</h2>
+        <p>Upload a CT image to determine if it indicates a disease or is normal.</p>
+        
+        <form action="/upload" method="POST" enctype="multipart/form-data">
+            <label for="ct-image" class="file-label">Choose a CT image:</label>
+            <input type="file" id="ct-image" name="ct-image" accept="image/*" required>
+            <button type="submit" class="btn-upload">Upload and Analyze</button>
+        </form>
+
+        <!-- Section to display the result -->
+        <div id="result" class="result">
+            {% if result %}
+                <p>Analysis result: {{ result }}</p>
+            {% else %}
+                <p>Analysis result will appear here after uploading an image.</p>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+        <p>CT Analyzer &copy; 2024. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>
